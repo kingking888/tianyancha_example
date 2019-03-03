@@ -39,16 +39,16 @@ ROBOTSTXT_OBEY = False
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
+# DEFAULT_REQUEST_HEADERS = {
 #   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
 #   'Accept-Language': 'en',
-#}
+# }
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
+# SPIDER_MIDDLEWARES = {
 #    'tianyancha.middlewares.TianyanchaSpiderMiddleware': 543,
-#}
+# }
 
 SPLASH_URL = 'http://127.0.0.1:8050'
 
@@ -64,26 +64,26 @@ SPIDER_MIDDLEWARES = {
     'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
 }
 
-ITEM_PIPELINES = {
-   'tianyancha.pipelines.MongoPipeline': 300,
-}
+# ITEM_PIPELINES = {
+#    'tianyancha.pipelines.MongoPipeline': 300,
+# }
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
+# DOWNLOADER_MIDDLEWARES = {
 #    'tianyancha.middlewares.MyCustomDownloaderMiddleware': 543,
-#}
+# }
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
-#EXTENSIONS = {
+# EXTENSIONS = {
 #    'scrapy.extensions.telnet.TelnetConsole': None,
-#}
+# }
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
+# ITEM_PIPELINES = {
 #    'tianyancha.pipelines.TianyanchaPipeline': 300,
-#}
+# }
 
 DOWNLOAD_DELAY = 5  # 间隔时间
 # CONCURRENT_REQUESTS = 16  # 默认为16
