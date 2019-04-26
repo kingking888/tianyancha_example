@@ -84,7 +84,6 @@ SPIDER_MIDDLEWARES = {
 # ITEM_PIPELINES = {
 #    'tianyancha.pipelines.TianyanchaPipeline': 300,
 # }
-
 DOWNLOAD_DELAY = 5  # 间隔时间
 # CONCURRENT_REQUESTS = 16  # 默认为16
 # Enable and configure the AutoThrottle extension (disabled by default)

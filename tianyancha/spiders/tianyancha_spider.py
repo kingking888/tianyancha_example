@@ -112,11 +112,11 @@ class TianyanchaSpider(scrapy.Spider):
                     if key_value:
                         result[key_value[0].strip()] = ''.join(key_value[1:])
                     else:
-                        logging.waring('have no key_value')
+                        logging.warning('have no key_value')
             else:
-                logging.waring('have no table')
+                logging.warning('have no table')
         else:
-            logging.waring('have no div row b-c-white company-content')
+            logging.warning('have no div row b-c-white company-content')
 
         # 主要人员
         divs = _soup('div', attrs={'class': 'staffinfo-module-content'})
