@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+import logging
+
 import scrapy
 from scrapy.http import Request
 from bs4 import BeautifulSoup
 
 
-class TianyanchaSpiderSpider(scrapy.Spider):
+class TianyanchaSpider(scrapy.Spider):
     name = "tianyancha_spider"
     allowed_domains = []
     script = """
@@ -16,7 +18,7 @@ class TianyanchaSpiderSpider(scrapy.Spider):
             end
     """
     start_urls = [
-        u'http://www.tianyancha.com/search?key=北京至信普林科技有限公司'
+        'http://www.tianyancha.com/search?key=北京至信普林科技有限公司'
     ]
 
     def start_requests(self):
@@ -32,14 +34,13 @@ class TianyanchaSpiderSpider(scrapy.Spider):
 
     def parse_next_page(self, response):
         _soup = BeautifulSoup(response.body, 'html.parser')
-        divs = _soup('div', attrs={'class': 'search_right_item'})
+        divs = _soup('div', attrs={'class': 'search-item sv-search-company'})
         for div in divs[:1]:
             _score = div.find('text', attrs={'x': '27', 'y': '28'})
             score = _score.get_text().strip() if _score else 'unknown'
             enterprise = div.a.get_text().strip() or 'unknown'
             _location = div.find('i', attrs={'class': 'fa fa-map-marker c9'})
             location = _location.next_element.string.strip() if _location else 'unknown'
-            print('location: ', location)
             url = div.a['href'] if div.find('a', attrs={'href': True}) else None
             script = """
                     function main(splash)
@@ -52,7 +53,6 @@ class TianyanchaSpiderSpider(scrapy.Spider):
                     end
             """
             if url:
-                print('url: %s' % url)
                 yield Request(
                     url,
                     self.parse_page,
@@ -110,14 +110,13 @@ class TianyanchaSpiderSpider(scrapy.Spider):
                 for td in tds:
                     key_value = td.get_text().strip().split(u'：') if td else None
                     if key_value:
-                        # print(key_value)
                         result[key_value[0].strip()] = ''.join(key_value[1:])
                     else:
-                        print('have no key_value')
+                        logging.waring('have no key_value')
             else:
-                print('have no table')
+                logging.waring('have no table')
         else:
-            print('have no div row b-c-white company-content')
+            logging.waring('have no div row b-c-white company-content')
 
         # 主要人员
         divs = _soup('div', attrs={'class': 'staffinfo-module-content'})
